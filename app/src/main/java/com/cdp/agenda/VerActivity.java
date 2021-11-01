@@ -39,7 +39,6 @@ public class VerActivity extends AppCompatActivity {
         Fecha_nac = findViewById(R.id.Fecha_nac);
         fabEliminar = findViewById(R.id.fabEliminar);
         btnGuarda = findViewById(R.id.btnGuarda);
-        btnGuarda.setVisibility(View.INVISIBLE);
 
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
@@ -57,14 +56,13 @@ public class VerActivity extends AppCompatActivity {
 
         if(cliente != null){
 
-            Identificacion.setText(cliente.getId());
+            Identificacion.setText(String.valueOf(cliente.getId()));
             vNombres.setText(cliente.getNombres());
             Apellidos.setText(cliente.getApellidos());
             txtCorreo.setText(cliente.getCorreo());
             editCelular.setText(cliente.getCelular());
             Telefono.setText(cliente.getTelefono());
             Fecha_nac.setText(cliente.getFecha_naci());
-
             btnGuarda.setVisibility(View.INVISIBLE);
             Identificacion.setInputType(InputType.TYPE_NULL);
             vNombres.setInputType(InputType.TYPE_NULL);
@@ -74,7 +72,7 @@ public class VerActivity extends AppCompatActivity {
             Telefono.setInputType(InputType.TYPE_NULL);
             Fecha_nac.setInputType(InputType.TYPE_NULL);
         }
-        /*
+
         fabEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,16 +82,18 @@ public class VerActivity extends AppCompatActivity {
             }
         });
 
+
+
         fabEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(VerActivity.this);
-                builder.setMessage("¿Desea eliminar este contacto?")
+                builder.setMessage("¿Desea eliminar este cliente?")
                         .setPositiveButton("SI", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
-                                if(dbContactos.eliminarContacto(id)){
+                                if(dbContactos.eliminarCliente(id)){
                                     lista();
                                 }
                             }
@@ -106,15 +106,15 @@ public class VerActivity extends AppCompatActivity {
                         }).show();
             }
         });
-        */
+
 
     }
-     /*
+
     private void lista(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-    */
+
 
 
 }

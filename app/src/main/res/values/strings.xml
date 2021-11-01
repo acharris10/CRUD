@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Agenda</string>
+    <string name="app_name">CRUD</string>
     <string name="hint_identifi">Identificacion:</string>
     <string name="hint_nombres">Nombres:</string>
     <string name="hint_apellidos">apellidos:</string>

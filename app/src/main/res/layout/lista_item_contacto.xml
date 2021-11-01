@@ -22,7 +22,7 @@
 
             <TextView
                 android:id="@+id/viewIde"
-                android:layout_width="match_parent"
+                android:layout_width="411dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
@@ -43,31 +43,31 @@
             <TextView
                 android:id="@+id/viewApellido"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="31dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/viewCorreo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="32dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/viewCelular"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/viewTelefono"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="32dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/viewFecha_naci"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="32dp"
                 android:layout_weight="1" />
 
 

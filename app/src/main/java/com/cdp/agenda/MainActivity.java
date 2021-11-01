@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
 
 import com.cdp.agenda.adaptadores.ListaClientesAdapter;
@@ -23,9 +24,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     SearchView txtBuscar;
     RecyclerView listaClientes;
     ArrayList<Clientes> listaArrayClientes;
-    //FloatingActionButton fabNuevo;
+    FloatingActionButton fabNuevo;
     ListaClientesAdapter adapter;
-
 
 
     @Override
@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_main);
 
 
-        //txtBuscar = findViewById(R.id.txtBuscar);
+        txtBuscar = findViewById(R.id.txtBuscar);
         listaClientes = findViewById(R.id.listaContactos);
-        //fabNuevo = findViewById(R.id.favNuevo);
+        fabNuevo = findViewById(R.id.favNuevo);
         listaClientes.setLayoutManager(new LinearLayoutManager(this));
 
         DbContactos dbContactos = new DbContactos(MainActivity.this);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         listaClientes.setAdapter(adapter);
 
 
-        /*
+
         fabNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         });
 
         txtBuscar.setOnQueryTextListener(this);
-
-
 
        /*
 
@@ -92,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             case R.id.menuNuevo:
                 nuevoRegistro();
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -104,12 +101,16 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
-    public boolean onQueryTextSubmit(String s) {
+    public boolean onQueryTextSubmit(String s)
+    {
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String s) {
+
+        adapter.filtrado(s);
+
         return false;
     }
 }

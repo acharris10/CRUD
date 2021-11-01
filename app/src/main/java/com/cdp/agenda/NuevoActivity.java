@@ -63,13 +63,13 @@ public class NuevoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(!Identificacion.getText().toString().equals("") && !txtNombres.getText().toString().equals("")&& !txtApellidos.getText().toString().equals("")
+                if (!Identificacion.getText().toString().equals("") && !txtNombres.getText().toString().equals("") && !txtApellidos.getText().toString().equals("")
                         && !txtCorreo.getText().toString().equals("") && !editCelular.getText().toString().equals("")
                         && !Telefono.getText().toString().equals("") && !Fecha_nac.getText().toString().equals("")) {
 
                     DbContactos dbContactos = new DbContactos(NuevoActivity.this);
                     long id = dbContactos.insertarDatos(Integer.parseInt(Identificacion.getText().toString()), txtNombres.getText().toString(), txtApellidos.getText().toString()
-                            , Telefono.getText().toString(), editCelular.getText().toString(), txtCorreo.getText().toString() , Fecha_nac.getText().toString());
+                            , Telefono.getText().toString(), editCelular.getText().toString(), txtCorreo.getText().toString(), Fecha_nac.getText().toString());
 
                     if (id > 0) {
                         Toast.makeText(NuevoActivity.this, "REGISTRO GUARDADO", Toast.LENGTH_LONG).show();
@@ -80,7 +80,9 @@ public class NuevoActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(NuevoActivity.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
                 }
+
             }
+
         });
     }
 

@@ -2,12 +2,14 @@ package com.cdp.agenda.adaptadores;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cdp.agenda.R;
@@ -15,14 +17,19 @@ import com.cdp.agenda.VerActivity;
 import com.cdp.agenda.entidades.Clientes;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdapter.ClienteViewHolder>{
 
     ArrayList<Clientes> listaClientes;
+    ArrayList<Clientes> listaSearch;
 
     public  ListaClientesAdapter(ArrayList<Clientes> listaClientes){
 
         this.listaClientes = listaClientes;
+        listaSearch = new ArrayList<>();
+        listaSearch.addAll(listaClientes);
 
     }
 
@@ -44,6 +51,34 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
         holder.viewTelefono.setText(listaClientes.get(position).getTelefono());
         holder.viewCorreo.setText(listaClientes.get(position).getCorreo());
         holder.viewFecha_naci.setText(listaClientes.get(position).getFecha_naci());
+
+    }
+
+
+    public void filtrado(String txtBuscar){
+
+        int longitud = txtBuscar.length();
+
+        if(longitud == 0){
+            listaClientes.clear();
+            listaClientes.addAll(listaSearch);
+        }else{
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                List<Clientes> collecion = listaClientes.stream().filter(i -> i.getNombres().toLowerCase().contains                  (txtBuscar.toLowerCase())).collect(Collectors.toList());
+                listaClientes.clear();
+                listaClientes.addAll(collecion);
+            }else{
+                for (Clientes c: listaSearch){
+                    if(c.getNombres().toLowerCase().contains(txtBuscar.toLowerCase())){
+                        listaClientes.add(c);
+                    }
+                }
+            }
+
+        }
+
+        notifyDataSetChanged();
 
     }
 

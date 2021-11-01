@@ -34,8 +34,8 @@ public class DbContactos extends DbHelper {
             values.put("apellidos", apellidos);
             values.put("telefono", telefono);
             values.put("celular", celular);
-            values.put("correo_electronico", correo);
             values.put("Fecha_nac", fecha_nac);
+            values.put("correo_electronico", correo);
 
             ide = db.insert(TABLE_CONTACTOS, null, values);
         } catch (Exception ex) {
@@ -62,10 +62,10 @@ public class DbContactos extends DbHelper {
                 cliente.setId(cursorClientes.getInt(0));
                 cliente.setNombres(cursorClientes.getString(1));
                 cliente.setApellidos(cursorClientes.getString(2));
-                cliente.setCorreo(cursorClientes.getString(3));
+                cliente.setTelefono(cursorClientes.getString(3));
                 cliente.setCelular(cursorClientes.getString(4));
-                cliente.setTelefono(cursorClientes.getString(5));
-                cliente.setFecha_naci(cursorClientes.getString(6));
+                cliente.setFecha_naci(cursorClientes.getString(5));
+                cliente.setCorreo(cursorClientes.getString(6));
                 listaClientes.add(cliente);
             } while (cursorClientes.moveToNext());
         }
@@ -92,39 +92,39 @@ public class DbContactos extends DbHelper {
             cliente.setId(cursorClientes.getInt(0));
             cliente.setNombres(cursorClientes.getString(1));
             cliente.setApellidos(cursorClientes.getString(2));
-            cliente.setCorreo(cursorClientes.getString(3));
+            cliente.setTelefono(cursorClientes.getString(3));
             cliente.setCelular(cursorClientes.getString(4));
-            cliente.setTelefono(cursorClientes.getString(5));
-            cliente.setFecha_naci(cursorClientes.getString(6));
+            cliente.setFecha_naci(cursorClientes.getString(5));
+            cliente.setCorreo(cursorClientes.getString(6));
         }
 
         cursorClientes.close();
 
         return cliente;
     }
-    /*
+    public boolean EditarDatos(int ida, int id, String nombres, String apellidos, String telefono, String celular,  String correo, String fecha_nac) {
 
-    public boolean editarContacto(int id, String nombre, String telefono, String correo_electronico) {
-
-        boolean correcto = false;
-
+        boolean sw = false;
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            db.execSQL("UPDATE " + TABLE_CONTACTOS + " SET nombre = '" + nombre + "', telefono = '" + telefono + "', correo_electronico = '" + correo_electronico + "' WHERE id='" + id + "' ");
-            correcto = true;
+            db.execSQL("UPDATE " + TABLE_CONTACTOS + " SET id = '" + id + "', nombres = '" + nombres + "', apellidos = '" + apellidos + "', telefono = '"+ telefono + "', celular = '"+ celular + "', Fecha_nac = '"+ fecha_nac + "', correo_electronico = '"+ correo + "'   WHERE id='" + ida + "' ");
+            sw = true;
         } catch (Exception ex) {
             ex.toString();
-            correcto = false;
+            sw = false;
         } finally {
             db.close();
         }
 
-        return correcto;
+        return sw;
     }
 
-    public boolean eliminarContacto(int id) {
+
+
+
+    public boolean eliminarCliente(int id) {
 
         boolean correcto = false;
 
@@ -143,5 +143,5 @@ public class DbContactos extends DbHelper {
 
         return correcto;
     }
-    */
+
 }
